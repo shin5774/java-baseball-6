@@ -3,14 +3,13 @@ package baseball.model;
 import static baseball.Constant.NUMBER_SIZE;
 
 import baseball.dto.RoundResult;
+import baseball.vo.Number;
 import baseball.vo.Numbers;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class Game {
-    private static final String DELIMITER = "";
     private static final int MINIMUM_NUMBER = 1;
     private static final int MAXIMUM_NUMBER = 9;
     private final Numbers computer;
@@ -19,29 +18,26 @@ public class Game {
         computer = new Numbers(generateComputerNumbers());
     }
 
-    private String generateComputerNumbers() {
-        Set<String> computer = new HashSet<>();
+    private List<Number> generateComputerNumbers() {
+        List<Integer> computer = new ArrayList<>();
         generate(computer);
 
-        return toString(computer);
+        return computer.stream()
+                .map(Number::new)
+                .toList();
     }
 
     public RoundResult playRound(Numbers user) {
         return new RoundResult(computer, user);
     }
 
-    private String toString(Set<String> computer) {
-        return String.join(DELIMITER, new ArrayList<>(computer));
-    }
-
-    private void generate(Set<String> computer) {
+    private void generate(List<Integer> computer) {
         while (computer.size() < NUMBER_SIZE) {
-            computer.add(toString(pickRandom()));
+            int randomNumber = pickRandom();
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber);
+            }
         }
-    }
-
-    private String toString(int number) {
-        return Integer.toString(number);
     }
 
     private int pickRandom() {

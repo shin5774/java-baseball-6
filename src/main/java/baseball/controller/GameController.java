@@ -2,6 +2,7 @@ package baseball.controller;
 
 import baseball.dto.RoundResult;
 import baseball.service.GameService;
+import baseball.util.Mapper;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 import baseball.vo.Numbers;
@@ -37,7 +38,7 @@ public class GameController {
     }
 
     private Numbers inputNumbers() {
-        return new Numbers(inputView.inputNumbers());
+        return Mapper.toNumbers(inputView.inputNumbers());
     }
 
     private String getResultMessage(RoundResult roundResult) {

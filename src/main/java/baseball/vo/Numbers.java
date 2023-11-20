@@ -3,31 +3,28 @@ package baseball.vo;
 import static baseball.Constant.BALL;
 import static baseball.Constant.STRIKE;
 
-import baseball.model.NumbersValidator;
-import baseball.model.Validator;
-import java.util.Arrays;
 import java.util.List;
 
 public class Numbers {
-    private final List<String> numbers;
+    private final List<Number> numbers;
 
-    public Numbers(String numbers) {
-        Validator validator = new NumbersValidator();
-        validator.validate(numbers);
-
-        this.numbers = toList(split(numbers));
+    public Numbers(List<Number> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
     }
 
-    private String[] split(String numbers) {
-        return numbers.split("");
+    private void validate(List<Number> numbers) {
+        int uniqueCount = (int) numbers.stream()
+                .distinct().count();
+
+        if (uniqueCount != 3) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    private List<String> toList(String[] numbers) {
-        return Arrays.asList(numbers);
-    }
 
     public String calculateByIndex(Numbers other, int index) {
-        String othersNumber = other.numberAt(index);
+        Number othersNumber = other.numberAt(index);
 
         if (isSamePlace(othersNumber, index)) {
             return STRIKE;
@@ -38,15 +35,15 @@ public class Numbers {
         return "";
     }
 
-    private String numberAt(int index) {
+    private Number numberAt(int index) {
         return numbers.get(index);
     }
 
-    private boolean isSamePlace(String number, int index) {
+    private boolean isSamePlace(Number number, int index) {
         return numberAt(index).equals(number);
     }
 
-    private boolean isExist(String number) {
+    private boolean isExist(Number number) {
         return numbers.contains(number);
     }
 }

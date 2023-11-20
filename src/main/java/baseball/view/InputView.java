@@ -3,6 +3,7 @@ package baseball.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import baseball.dto.NumbersDto;
+import baseball.dto.RestartDto;
 import baseball.util.Mapper;
 
 public class InputView {
@@ -14,9 +15,9 @@ public class InputView {
         return Mapper.toNumbersDto(readLine());
     }
 
-    public String inputContinue() {
+    public RestartDto inputContinue() {
         System.out.println(INPUT_CONTINUE_MESSAGE);
-        return readLine();
+        return Mapper.toRestartDto(readLine());
     }
 
 }

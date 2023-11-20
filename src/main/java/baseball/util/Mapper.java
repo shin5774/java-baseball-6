@@ -1,9 +1,11 @@
 package baseball.util;
 
 import baseball.dto.NumbersDto;
+import baseball.dto.RestartDto;
 import baseball.model.Validator;
 import baseball.vo.Number;
 import baseball.vo.Numbers;
+import baseball.vo.Restart;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,5 +30,15 @@ public class Mapper {
                 .toList();
 
         return new Numbers(numbers);
+    }
+
+    public static RestartDto toRestartDto(String request) {
+        Validator.isInteger(request);
+
+        return new RestartDto(request);
+    }
+
+    public static Restart toRestart(RestartDto restartDto) {
+        return new Restart(restartDto.request());
     }
 }

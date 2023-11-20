@@ -1,5 +1,7 @@
 package baseball.model;
 
+import static baseball.Constant.NUMBER_SIZE;
+
 import baseball.dto.RoundResult;
 import baseball.vo.Numbers;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -8,6 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Game {
+    private static final String DELIMITER = "";
+    private static final int MINIMUM_NUMBER = 1;
+    private static final int MAXIMUM_NUMBER = 9;
     private final Numbers computer;
 
     public Game() {
@@ -26,11 +31,11 @@ public class Game {
     }
 
     private String toString(Set<String> computer) {
-        return String.join("", new ArrayList<>(computer));
+        return String.join(DELIMITER, new ArrayList<>(computer));
     }
 
     private void generate(Set<String> computer) {
-        while (computer.size() < 3) {
+        while (computer.size() < NUMBER_SIZE) {
             computer.add(toString(pickRandom()));
         }
     }
@@ -40,6 +45,6 @@ public class Game {
     }
 
     private int pickRandom() {
-        return Randoms.pickNumberInRange(1, 9);
+        return Randoms.pickNumberInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER);
     }
 }

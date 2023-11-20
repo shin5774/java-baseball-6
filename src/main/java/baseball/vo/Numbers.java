@@ -1,5 +1,8 @@
 package baseball.vo;
 
+import static baseball.Constant.BALL;
+import static baseball.Constant.STRIKE;
+
 import baseball.model.NumbersValidator;
 import baseball.model.Validator;
 import java.util.Arrays;
@@ -27,10 +30,10 @@ public class Numbers {
         String othersNumber = other.numberAt(index);
 
         if (isSamePlace(othersNumber, index)) {
-            return "스트라이크";
+            return STRIKE;
         }
         if (isExist(othersNumber)) {
-            return "볼";
+            return BALL;
         }
         return "";
     }

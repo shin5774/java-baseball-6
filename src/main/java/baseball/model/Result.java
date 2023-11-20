@@ -1,8 +1,13 @@
 package baseball.model;
 
+import static baseball.Constant.BALL;
+import static baseball.Constant.NOTHING;
+import static baseball.Constant.STRIKE;
+
 import baseball.vo.Numbers;
 
 public class Result {
+    private static final int FINISH_SIZE = 3;
     private int strike;
     private int ball;
 
@@ -16,12 +21,12 @@ public class Result {
     }
 
     private void addResult(String result) {
-        if (result.equals("스트라이크")) {
+        if (result.equals(STRIKE)) {
             strike += 1;
             return;
         }
 
-        if (result.equals("볼")) {
+        if (result.equals(BALL)) {
             ball += 1;
         }
     }
@@ -30,19 +35,19 @@ public class Result {
         String resultMessage = "";
 
         if (ball != 0) {
-            resultMessage += ball + "볼 ";
+            resultMessage += ball + BALL + " ";
         }
         if (strike != 0) {
-            resultMessage += strike + "스트라이크";
+            resultMessage += strike + STRIKE;
         }
         if (resultMessage.equals("")) {
-            return "낫싱";
+            return NOTHING;
         }
 
         return resultMessage.strip();
     }
 
     public boolean isThreeStrike() {
-        return strike == 3;
+        return strike == FINISH_SIZE;
     }
 }

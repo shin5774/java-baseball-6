@@ -1,9 +1,11 @@
 package baseball;
 
+import baseball.controller.GenerateComputerNumbersController;
 import baseball.controller.GenerateRoundResultController;
-import baseball.model.Game;
+import baseball.controller.MessageController;
+import baseball.controller.RequestRestartController;
+import baseball.controller.RequestUserNumbersController;
 import baseball.model.Result;
-import baseball.util.Mapper;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 import baseball.vo.Numbers;
@@ -12,33 +14,38 @@ import baseball.vo.Restart;
 public class BaseballApplication {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
+    private final MessageController messageController;
 
-    public void start() {
-        outputView.printProgramStartMessage();
-        startGame();
+    public BaseballApplication(MessageController messageController) {
+        this.messageController = messageController;
     }
 
-    private void startGame() {
-        Game game = new Game();
-        playRound(game);
+    public void start() {
+        messageController.displayProgramStartMessage();
+        playGame();
+    }
 
-        Restart restart = Mapper.toRestart(inputView.inputContinue());
+    private void playGame() {
+        Numbers computer = new GenerateComputerNumbersController().proceed();
+        playRound(computer);
+
+        Restart restart = new RequestRestartController(inputView).proceed();
 
         if (restart.isContinue()) {
-            startGame();
+            playGame();
         }
     }
 
-    private void playRound(Game game) {
-        Numbers user = Mapper.toNumbers(inputView.inputNumbers());
-        Result roundResult = new GenerateRoundResultController(game.getComputer(), user).proceed();
+    private void playRound(Numbers computer) {
+        Numbers user = new RequestUserNumbersController(inputView).proceed();
+        Result roundResult = new GenerateRoundResultController(computer, user).proceed();
 
         outputView.printResult(roundResult.getResult());
         if (roundResult.isThreeStrike()) {
-            outputView.printFinishGameMessage();
+            messageController.displayFinishGameMessage();
             return;
         }
 
-        playRound(game);
+        playRound(computer);
     }
 }

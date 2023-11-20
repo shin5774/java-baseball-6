@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.controller.DisplayResultController;
 import baseball.controller.GenerateComputerNumbersController;
 import baseball.controller.GenerateRoundResultController;
 import baseball.controller.MessageController;
@@ -40,7 +41,7 @@ public class BaseballApplication {
         Numbers user = new RequestUserNumbersController(inputView).proceed();
         Result roundResult = new GenerateRoundResultController(computer, user).proceed();
 
-        outputView.printResult(roundResult.getResult());
+        new DisplayResultController(outputView).proceed(roundResult);
         if (roundResult.isThreeStrike()) {
             messageController.displayFinishGameMessage();
             return;

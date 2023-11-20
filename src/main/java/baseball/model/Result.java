@@ -4,7 +4,9 @@ import static baseball.Constant.BALL;
 import static baseball.Constant.NOTHING;
 import static baseball.Constant.STRIKE;
 
+import baseball.dto.ResultDto;
 import baseball.vo.ResultState;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
@@ -24,6 +26,14 @@ public class Result {
     private static int findResult(List<ResultState> resultStates, ResultState resultState) {
         return (int) resultStates.stream().filter(state -> state == resultState)
                 .count();
+    }
+
+    public List<ResultDto> getResultStates() {
+        List<ResultDto> resultStates = new ArrayList<>();
+        resultStates.add(new ResultDto(ResultState.BALL, ball));
+        resultStates.add(new ResultDto(ResultState.STRIKE, strike));
+        
+        return resultStates;
     }
 
 

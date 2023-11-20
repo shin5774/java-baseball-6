@@ -9,4 +9,8 @@ public enum ResultState {
     ResultState(String title) {
         this.title = title;
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

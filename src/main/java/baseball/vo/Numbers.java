@@ -1,9 +1,7 @@
 package baseball.vo;
 
-import static baseball.Constant.BALL;
-import static baseball.Constant.STRIKE;
-
 import java.util.List;
+import java.util.Objects;
 
 public class Numbers {
     private final List<Number> numbers;
@@ -22,28 +20,25 @@ public class Numbers {
         }
     }
 
+    public List<ResultState> getResultStates(Numbers other) {
+        return other.numbers.stream()
+                .map(number -> getResultState(other, number))
+                .filter(Objects::nonNull)
+                .toList();
+    }
 
-    public String calculateByIndex(Numbers other, int index) {
-        Number othersNumber = other.numberAt(index);
-
-        if (isSamePlace(othersNumber, index)) {
-            return STRIKE;
+    private ResultState getResultState(Numbers other, Number number) {
+        if (other.getIndex(number) == getIndex(number)) {
+            return ResultState.STRIKE;
         }
-        if (isExist(othersNumber)) {
-            return BALL;
+        if (numbers.contains(number)) {
+            return ResultState.BALL;
         }
-        return "";
+
+        return null;
     }
 
-    private Number numberAt(int index) {
-        return numbers.get(index);
-    }
-
-    private boolean isSamePlace(Number number, int index) {
-        return numberAt(index).equals(number);
-    }
-
-    private boolean isExist(Number number) {
-        return numbers.contains(number);
+    private int getIndex(Number number) {
+        return numbers.indexOf(number);
     }
 }

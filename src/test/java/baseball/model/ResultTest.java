@@ -24,7 +24,7 @@ public class ResultTest {
                 .map(Number::new)
                 .toList());
 
-        Result result = new Result(computer, user);
+        Result result = Result.from(computer.getResultStates(user));
 
         assertThat(result.getResult()).isEqualTo(expected);
     }
@@ -37,7 +37,7 @@ public class ResultTest {
                 .map(Integer::parseInt)
                 .map(Number::new)
                 .toList());
-        Result result = new Result(user, user);
+        Result result = Result.from(user.getResultStates(user));
 
         assertThat(result.isThreeStrike()).isTrue();
     }

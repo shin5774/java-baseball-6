@@ -2,7 +2,6 @@ package baseball.model;
 
 import static baseball.Constant.NUMBER_SIZE;
 
-import baseball.dto.RoundResult;
 import baseball.vo.Number;
 import baseball.vo.Numbers;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -27,10 +26,6 @@ public class Game {
                 .toList();
     }
 
-    public RoundResult playRound(Numbers user) {
-        return new RoundResult(computer, user);
-    }
-
     private void generate(List<Integer> computer) {
         while (computer.size() < NUMBER_SIZE) {
             int randomNumber = pickRandom();
@@ -42,5 +37,9 @@ public class Game {
 
     private int pickRandom() {
         return Randoms.pickNumberInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER);
+    }
+
+    public Numbers getComputer() {
+        return computer;
     }
 }

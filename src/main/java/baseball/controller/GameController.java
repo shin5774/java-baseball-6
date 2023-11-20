@@ -1,6 +1,6 @@
 package baseball.controller;
 
-import baseball.dto.RoundResult;
+import baseball.model.Result;
 import baseball.service.GameService;
 import baseball.util.Mapper;
 import baseball.view.InputView;
@@ -27,10 +27,11 @@ public class GameController {
     }
 
     private void startRound() {
-        RoundResult roundResult = gameService.playRound(inputNumbers());
-        outputView.printResult(getResultMessage(roundResult));
+        Numbers user = inputNumbers();
+        Result roundResult = new GenerateRoundResultController(gameService.getComputer(), user).proceed();
+        outputView.printResult(roundResult.getResult());
 
-        if (roundResult.isFinish()) {
+        if (roundResult.isThreeStrike()) {
             outputView.printFinishGameMessage();
             return;
         }
@@ -41,11 +42,7 @@ public class GameController {
         return Mapper.toNumbers(inputView.inputNumbers());
     }
 
-    private String getResultMessage(RoundResult roundResult) {
-        return roundResult.getResultMessage();
-    }
-
     private Restart inputRestart() {
-        return new Restart(inputView.inputContinue());
+        return Mapper.toRestart(inputView.inputContinue());
     }
 }

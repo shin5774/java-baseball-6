@@ -4,32 +4,28 @@ import static baseball.Constant.BALL;
 import static baseball.Constant.NOTHING;
 import static baseball.Constant.STRIKE;
 
-import baseball.vo.Numbers;
+import baseball.vo.ResultState;
+import java.util.List;
 
 public class Result {
     private static final int FINISH_SIZE = 3;
-    private int strike;
-    private int ball;
+    private final int strike;
+    private final int ball;
 
-    public Result(Numbers computer, Numbers user) {
-        strike = 0;
-        ball = 0;
-
-        for (int index = 0; index < 3; index++) {
-            addResult(computer.calculateByIndex(user, index));
-        }
+    private Result(int strike, int ball) {
+        this.strike = strike;
+        this.ball = ball;
     }
 
-    private void addResult(String result) {
-        if (result.equals(STRIKE)) {
-            strike += 1;
-            return;
-        }
-
-        if (result.equals(BALL)) {
-            ball += 1;
-        }
+    public static Result from(List<ResultState> resultStates) {
+        return new Result(findResult(resultStates, ResultState.STRIKE), findResult(resultStates, ResultState.BALL));
     }
+
+    private static int findResult(List<ResultState> resultStates, ResultState resultState) {
+        return (int) resultStates.stream().filter(state -> state == resultState)
+                .count();
+    }
+
 
     public String getResult() {
         String resultMessage = "";

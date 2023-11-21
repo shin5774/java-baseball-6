@@ -1,5 +1,7 @@
 package baseball.controller;
 
+import static baseball.Constant.NUMBER_HIGH_BOUND;
+import static baseball.Constant.NUMBER_LOW_BOUND;
 import static baseball.Constant.NUMBER_SIZE;
 
 import baseball.vo.Number;
@@ -9,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateComputerNumbersController {
-    private static final int MINIMUM_NUMBER = 1;
-    private static final int MAXIMUM_NUMBER = 9;
-
     public Numbers proceed() {
         return toNumbers(generate());
     }
@@ -33,7 +32,7 @@ public class GenerateComputerNumbersController {
     }
 
     private int pickRandom() {
-        return Randoms.pickNumberInRange(MINIMUM_NUMBER, MAXIMUM_NUMBER);
+        return Randoms.pickNumberInRange(NUMBER_LOW_BOUND, NUMBER_HIGH_BOUND);
     }
 
     private void addNumber(List<Integer> computer, int randomNumber) {

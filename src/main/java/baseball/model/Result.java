@@ -1,9 +1,5 @@
 package baseball.model;
 
-import static baseball.Constant.BALL;
-import static baseball.Constant.NOTHING;
-import static baseball.Constant.STRIKE;
-
 import baseball.dto.ResultDto;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,25 +27,8 @@ public class Result {
         List<ResultDto> resultStates = new ArrayList<>();
         resultStates.add(new ResultDto(ResultState.BALL, ball));
         resultStates.add(new ResultDto(ResultState.STRIKE, strike));
-        
+
         return resultStates;
-    }
-
-
-    public String getResult() {
-        String resultMessage = "";
-
-        if (ball != 0) {
-            resultMessage += ball + BALL + " ";
-        }
-        if (strike != 0) {
-            resultMessage += strike + STRIKE;
-        }
-        if (resultMessage.equals("")) {
-            return NOTHING;
-        }
-
-        return resultMessage.strip();
     }
 
     public boolean isThreeStrike() {

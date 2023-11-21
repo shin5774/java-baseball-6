@@ -1,10 +1,11 @@
 package baseball.vo;
 
+import static baseball.Constant.NUMBER_HIGH_BOUND;
+import static baseball.Constant.NUMBER_LOW_BOUND;
+
 import java.util.Objects;
 
 public class Number {
-    private static final int LOW_BOUND = 1;
-    private static final int HIGH_BOUND = 9;
     private final int number;
 
     public Number(int number) {
@@ -19,7 +20,7 @@ public class Number {
     }
 
     private boolean isOutOfRange(int number) {
-        return number < LOW_BOUND || number > HIGH_BOUND;
+        return number < NUMBER_LOW_BOUND || number > NUMBER_HIGH_BOUND;
     }
 
     @Override

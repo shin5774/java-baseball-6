@@ -1,11 +1,11 @@
 package baseball.controller;
 
+import static baseball.Constant.NUMBERS_SIZE;
 import static baseball.Constant.NUMBER_HIGH_BOUND;
 import static baseball.Constant.NUMBER_LOW_BOUND;
-import static baseball.Constant.NUMBER_SIZE;
 
-import baseball.vo.Number;
 import baseball.model.Numbers;
+import baseball.vo.Number;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class GenerateComputerNumbersController {
     private List<Integer> generate() {
         List<Integer> computer = new ArrayList<>();
 
-        while (computer.size() < NUMBER_SIZE) {
+        while (computer.size() < NUMBERS_SIZE) {
             addNumber(computer, pickRandom());
         }
 

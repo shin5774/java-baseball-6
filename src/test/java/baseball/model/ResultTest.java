@@ -19,6 +19,6 @@ public class ResultTest {
                 .toList());
         Result result = Result.from(user.getResultStates(user));
 
-        assertThat(result.isThreeStrike()).isTrue();
+        assertThat(result.isFinish()).isTrue();
     }
 }

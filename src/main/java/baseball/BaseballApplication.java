@@ -6,18 +6,21 @@ import baseball.controller.GenerateRoundResultController;
 import baseball.controller.MessageController;
 import baseball.controller.RequestRestartController;
 import baseball.controller.RequestUserNumbersController;
+import baseball.model.Numbers;
+import baseball.model.Restart;
 import baseball.model.Result;
 import baseball.view.InputView;
 import baseball.view.OutputView;
-import baseball.model.Numbers;
-import baseball.model.Restart;
+import camp.nextstep.edu.missionutils.Console;
 
 public class BaseballApplication {
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
     private final MessageController messageController;
 
-    public BaseballApplication(MessageController messageController) {
+    public BaseballApplication(InputView inputView, OutputView outputView, MessageController messageController) {
+        this.inputView = inputView;
+        this.outputView = outputView;
         this.messageController = messageController;
     }
 
@@ -42,11 +45,15 @@ public class BaseballApplication {
         Result roundResult = new GenerateRoundResultController(computer, user).proceed();
 
         new DisplayResultController(outputView).proceed(roundResult);
-        if (roundResult.isThreeStrike()) {
+        if (roundResult.isFinish()) {
             messageController.displayFinishGameMessage();
             return;
         }
 
         playRound(computer);
+    }
+
+    public void finish() {
+        Console.close();
     }
 }

@@ -31,7 +31,7 @@ public class Result {
         return resultStates;
     }
 
-    public boolean isThreeStrike() {
+    public boolean isFinish() {
         return strike == FINISH_SIZE;
     }
 }

@@ -1,5 +1,7 @@
 package baseball.model;
 
+import static baseball.Constant.NUMBERS_SIZE;
+
 import baseball.vo.Number;
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +18,7 @@ public class Numbers {
         int uniqueCount = (int) numbers.stream()
                 .distinct().count();
 
-        if (uniqueCount != 3) {
+        if (uniqueCount != NUMBERS_SIZE) {
             throw new IllegalArgumentException();
         }
     }

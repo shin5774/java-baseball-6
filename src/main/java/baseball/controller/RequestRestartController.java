@@ -3,7 +3,7 @@ package baseball.controller;
 import baseball.dto.RestartDto;
 import baseball.util.Mapper;
 import baseball.view.InputView;
-import baseball.vo.Restart;
+import baseball.model.Restart;
 
 public class RequestRestartController {
     private final InputView inputView;

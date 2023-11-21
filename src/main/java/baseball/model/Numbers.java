@@ -1,5 +1,6 @@
-package baseball.vo;
+package baseball.model;
 
+import baseball.vo.Number;
 import java.util.List;
 import java.util.Objects;
 

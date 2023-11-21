@@ -9,8 +9,8 @@ import baseball.controller.RequestUserNumbersController;
 import baseball.model.Result;
 import baseball.view.InputView;
 import baseball.view.OutputView;
-import baseball.vo.Numbers;
-import baseball.vo.Restart;
+import baseball.model.Numbers;
+import baseball.model.Restart;
 
 public class BaseballApplication {
     private InputView inputView = new InputView();

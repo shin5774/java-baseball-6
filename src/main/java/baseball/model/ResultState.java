@@ -1,4 +1,4 @@
-package baseball.vo;
+package baseball.model;
 
 public enum ResultState {
     STRIKE("스트라이크"),

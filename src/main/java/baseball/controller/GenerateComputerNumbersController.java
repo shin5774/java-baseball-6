@@ -3,7 +3,7 @@ package baseball.controller;
 import static baseball.Constant.NUMBER_SIZE;
 
 import baseball.vo.Number;
-import baseball.vo.Numbers;
+import baseball.model.Numbers;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;

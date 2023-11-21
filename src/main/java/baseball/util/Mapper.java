@@ -2,10 +2,9 @@ package baseball.util;
 
 import baseball.dto.NumbersDto;
 import baseball.dto.RestartDto;
-import baseball.model.Validator;
 import baseball.vo.Number;
-import baseball.vo.Numbers;
-import baseball.vo.Restart;
+import baseball.model.Numbers;
+import baseball.model.Restart;
 import java.util.Arrays;
 import java.util.List;
 

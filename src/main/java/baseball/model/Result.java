@@ -5,7 +5,6 @@ import static baseball.Constant.NOTHING;
 import static baseball.Constant.STRIKE;
 
 import baseball.dto.ResultDto;
-import baseball.vo.ResultState;
 import java.util.ArrayList;
 import java.util.List;
 

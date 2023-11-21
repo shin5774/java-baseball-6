@@ -2,6 +2,7 @@ package baseball.vo;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import baseball.model.Numbers;
 import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

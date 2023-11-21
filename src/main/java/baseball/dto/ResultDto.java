@@ -1,6 +1,6 @@
 package baseball.dto;
 
-import baseball.vo.ResultState;
+import baseball.model.ResultState;
 
 public record ResultDto(ResultState resultState, int count) {
 }

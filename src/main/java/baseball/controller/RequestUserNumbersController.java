@@ -3,7 +3,7 @@ package baseball.controller;
 import baseball.dto.NumbersDto;
 import baseball.util.Mapper;
 import baseball.view.InputView;
-import baseball.vo.Numbers;
+import baseball.model.Numbers;
 
 public class RequestUserNumbersController {
     private final InputView inputView;

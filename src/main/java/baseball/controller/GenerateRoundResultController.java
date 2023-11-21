@@ -1,8 +1,8 @@
 package baseball.controller;
 
 import baseball.model.Result;
-import baseball.vo.Numbers;
-import baseball.vo.ResultState;
+import baseball.model.Numbers;
+import baseball.model.ResultState;
 import java.util.List;
 
 public class GenerateRoundResultController {

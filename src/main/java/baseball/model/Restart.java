@@ -1,4 +1,4 @@
-package baseball.vo;
+package baseball.model;
 
 public class Restart {
     private static final String CONTINUE_KEY = "1";

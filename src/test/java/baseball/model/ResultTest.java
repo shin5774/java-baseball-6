@@ -3,7 +3,6 @@ package baseball.model;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import baseball.vo.Number;
-import baseball.vo.Numbers;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
